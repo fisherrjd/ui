@@ -13,6 +13,8 @@
     "./styles.css": "./styles/index.css",
     "./theme": "./src/theme/index.ts",
     "./styleguide": "./src/styleguide/index.ts",
+    "./layout": "./src/layout/index.ts",
+    "./states": "./src/states/index.ts",
     "./utils": "./src/lib/utils.ts",
     "./vite": {
       "types": "./vite.d.ts",
@@ -37,6 +39,7 @@
     "tailwindcss": "^4.3.3",
     "vite": ">=7",
     "vue": "^3.5.0",
+    "vue-router": "^5.2.0",
     "vue-sonner": "^2.0.9"
   },
   "devDependencies": {
@@ -48,6 +51,7 @@
     "typescript": "~6.0.2",
     "vite": "^8.1.1",
     "vue": "^3.5.39",
+    "vue-router": "^5.2.0",
     "vue-sonner": "^2.0.9",
     "vue-tsc": "^3.3.5"
   }

@@ -27,6 +27,7 @@ const DEPS = [
   'clsx',
   'reka-ui',
   'tailwind-merge',
+  'vue-router',
   'vue-sonner',
 ]
 

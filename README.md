@@ -72,6 +72,11 @@ Apps only move when they run `ui-update`: their `bun.lock` pins the commit.
 `bun link @fisherrjd/ui` in the app, and restart its `dev`. The plugin
 handles the symlink. To undo: `bun install --force`.
 
+While linked, the dev server is fine but `check`/`build` in the app can
+report Vue type errors such as "LucideIcon is not assignable to Component".
+TypeScript sees two copies of Vue there: this checkout's and the app's. A
+normal install doesn't have this problem.
+
 ## What's in it
 
 | path | what | apps import |
@@ -80,6 +85,8 @@ handles the symlink. To undo: `bun install --force`.
 | `styles/index.css` | token wiring, base styles, `card-hover`, `md-prose`, `rise-in`, page transitions | `@import "@fisherrjd/ui/styles.css"` |
 | `styles/looks.css` | the line / block / hud rules | (via styles.css) |
 | `src/components/ui/` | shadcn-vue primitives | `@fisherrjd/ui/button`, `…/dialog`, … |
+| `src/layout/` | `AppShell` (sidebar + top bar + phone drawer), `PageHeader` | `@fisherrjd/ui/layout` |
+| `src/states/` | `EmptyState`, `ErrorState`, `ConfirmDialog` | `@fisherrjd/ui/states` |
 | `src/theme/` | `useTheme` (mode), `THEME`, `LOCKED`, `ThemeToggle` | `@fisherrjd/ui/theme` |
 | `src/styleguide/` | `ThemeLab`, `ColorSwatches`, `TypeScale`, `ComponentGallery` | `@fisherrjd/ui/styleguide` |
 | `src/lib/utils.ts` | `cn` | `@fisherrjd/ui/utils` |
@@ -119,8 +126,9 @@ to the matching selectors in `styles/looks.css`.
 ## Rules of thumb
 
 - **Belongs here:** anything that should look the same in every app.
-- **Stays in the app:** pattern components (dashboard, data, forms…) and
-  app-only CSS. Use theme tokens (`text-success`, `bg-chart-2`, …), not
+- **Stays in the app:** components only that app needs (news's feed rows,
+  the template's dashboard patterns) and app-only CSS. A component a second
+  app wants moves here instead of being copied. Use theme tokens (`text-success`, `bg-chart-2`, …), not
   Tailwind palette colors, so they follow the app's colors.
 - **One app needs a primitive to differ:** copy it locally rather than
   forking the shared one.
