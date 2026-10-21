@@ -15,6 +15,7 @@
     "./styleguide": "./src/styleguide/index.ts",
     "./layout": "./src/layout/index.ts",
     "./states": "./src/states/index.ts",
+    "./dashboard": "./src/dashboard/index.ts",
     "./utils": "./src/lib/utils.ts",
     "./vite": {
       "types": "./vite.d.ts",

@@ -88,6 +88,7 @@ normal install doesn't have this problem.
 | `src/components/ui/` | shadcn-vue primitives | `@fisherrjd/ui/button`, `…/dialog`, … |
 | `src/layout/` | `AppShell` (sidebar + top bar + phone drawer), `PageHeader` | `@fisherrjd/ui/layout` |
 | `src/states/` | `EmptyState`, `ErrorState`, `ConfirmDialog` | `@fisherrjd/ui/states` |
+| `src/dashboard/` | `StatCard`, `LinkTile` (a door to another page or tool), `Panel` (keeps its height; long bodies scroll inside), `Pipeline`, `ActivityFeed`, `BarChart`, `ProgressMeter`, `Sparkline`, `UserAvatar` | `@fisherrjd/ui/dashboard` |
 | `src/theme/` | `useTheme` (mode), `THEME`, `LOCKED`, `ThemeToggle` | `@fisherrjd/ui/theme` |
 | `src/styleguide/` | `ThemeLab`, `ColorSwatches`, `TypeScale`, `ComponentGallery` | `@fisherrjd/ui/styleguide` |
 | `src/lib/utils.ts` | `cn` | `@fisherrjd/ui/utils` |

@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from '../components/ui/card'
 import { Checkbox } from '../components/ui/checkbox'
+import { LinkTile, Panel, Pipeline, StatCard } from '../dashboard'
 import {
   Dialog,
   DialogClose,
@@ -110,6 +111,28 @@ const flavor = ref<string>()
           class to any card that acts as a link.
         </p>
       </Card>
+    </div>
+
+    <div class="space-y-3">
+      <h3 class="text-sm font-medium text-muted-foreground">
+        Dashboard: StatCard, LinkTile (a door to another page or tool), Pipeline, Panel
+      </h3>
+      <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <StatCard label="tasks" value="9/9" sub="3 steps" />
+        <StatCard label="runs" :value="42" sub="this week" :data="[3, 5, 4, 7, 6, 8]" />
+        <LinkTile label="code pr" title="news #5" sub="merged" status="ok" :icon="SettingsIcon" href="https://github.com" />
+        <LinkTile label="preview" title="Not running" sub="gone" status="off" :icon="SettingsIcon" />
+      </div>
+      <Panel title="Pipeline" meta="34 stages">
+        <Pipeline
+          :steps="[
+            { label: 'plan', status: 'done', detail: '3 rounds' },
+            { label: 'build', status: 'running' },
+            { label: 'verify', status: 'todo' },
+            { label: 'deploy', status: 'todo' },
+          ]"
+        />
+      </Panel>
     </div>
 
     <div class="space-y-3">
