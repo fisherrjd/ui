@@ -153,6 +153,22 @@ function triplet(color) {
 
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v))
 
+/** the hue (radians) in the middle of the widest gap between the given hues */
+function widestGap(hues) {
+  const tau = 2 * Math.PI
+  const hs = hues.map((h) => ((h % tau) + tau) % tau).sort((a, b) => a - b)
+  let best = -1
+  let mid = 0
+  hs.forEach((h, i) => {
+    const next = i + 1 < hs.length ? hs[i + 1] : hs[0] + tau
+    if (next - h > best) {
+      best = next - h
+      mid = h + (next - h) / 2
+    }
+  })
+  return mid
+}
+
 /** seeds + mode → every color token, as hex */
 export function derive(colors, mode) {
   const P = oklch(colors.primary)
@@ -165,6 +181,10 @@ export function derive(colors, mode) {
   const dark = mode === 'dark'
   const ink = n(0.16)
   const on = (bg) => (contrast(bg, '#ffffff') >= contrast(bg, ink) ? '#ffffff' : ink)
+  // the two extra chart colors sit in the widest gaps of the hue wheel left by
+  // primary and accent, so all four stay easy to tell apart
+  const h3 = widestGap([P.h, A.h])
+  const h4 = widestGap([P.h, A.h, h3])
   // a fill that carries text: nudge lightness away from its text until 4.5:1
   const fill = (L, C, h, step) => {
     let color = hex(L, C, h)
@@ -195,8 +215,8 @@ export function derive(colors, mode) {
         highlight: hex(clamp(A.L, 0.72, 0.9), A.C, A.h),
         'accent-fill': fill(clamp(A.L, 0.7, 0.88), A.C, A.h, 0.02),
         destructive: fill(clamp(D.L, 0.62, 0.72), D.C, D.h, 0.02),
-        'chart-3': hex(0.76, Math.max(P.C, 0.12), P.h + 2.1),
-        'chart-4': hex(0.76, Math.max(A.C, 0.12), A.h + 2.1),
+        'chart-3': hex(0.76, Math.max(P.C, 0.12), h3),
+        'chart-4': hex(0.76, Math.max(A.C, 0.12), h4),
       }
     : {
         background: n(0.975, 0.4),
@@ -217,8 +237,8 @@ export function derive(colors, mode) {
         highlight: hex(clamp(A.L, 0.4, 0.5), A.C, A.h),
         'accent-fill': fill(clamp(A.L, 0.72, 0.88), A.C, A.h, 0.02),
         destructive: fill(clamp(D.L, 0.45, 0.55), D.C, D.h, -0.02),
-        'chart-3': hex(0.82, Math.max(P.C, 0.12), P.h + 2.1),
-        'chart-4': hex(0.82, Math.max(A.C, 0.12), A.h + 2.1),
+        'chart-3': hex(0.82, Math.max(P.C, 0.12), h3),
+        'chart-4': hex(0.82, Math.max(A.C, 0.12), h4),
       }
 
   // status colors keep their meaning (green = good) whatever the palette,
