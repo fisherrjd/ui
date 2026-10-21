@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Separator } from '../src/components/ui/separator'
 import { Toaster } from '../src/components/ui/sonner'
-import { ColorSwatches, ComponentGallery, TypeScale } from '../src/styleguide'
-import { ThemePicker, ThemeToggle } from '../src/theme'
+import { ColorSwatches, ComponentGallery, ThemeLab, TypeScale } from '../src/styleguide'
+import { ThemeToggle } from '../src/theme'
 </script>
 
 <template>
@@ -16,17 +16,25 @@ import { ThemePicker, ThemeToggle } from '../src/theme'
             @fisherrjd/ui
           </h1>
           <p class="text-muted-foreground">
-            The shared layer every app imports. Edit
+            Jade's theme, as every app gets it. Try palettes, fonts and styles in the
+            lab; edit
             <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">styles/</code> or
             <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">src/components/ui/</code>
             and watch this page repaint.
           </p>
         </div>
         <div class="flex items-center gap-1">
-          <ThemePicker />
           <ThemeToggle />
         </div>
       </div>
+
+      <section class="space-y-4">
+        <h2 class="flex items-center gap-2 text-xl font-semibold tracking-tight">
+          <span class="size-2 rounded-sm bg-primary" aria-hidden="true" />Theme lab</h2>
+        <ThemeLab />
+      </section>
+
+      <Separator />
 
       <section class="space-y-4">
         <h2 class="flex items-center gap-2 text-xl font-semibold tracking-tight">

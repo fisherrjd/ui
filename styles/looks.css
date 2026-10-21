@@ -1,0 +1,209 @@
+/* The three looks of Jade's theme. data-look on <html> comes from
+   ui({ style }) via the pre-paint script, and the theme lab flips it live.
+   Unlayered on purpose: these restyle the primitives' utility classes,
+   which live in tailwind's utilities layer and would otherwise win.
+
+   Primitives are matched by their data-slot (and data-variant), so the
+   rules follow the components wherever they're used. */
+
+/* ————— line: hairlines, flat ————— */
+
+:root[data-look='line'] [data-slot='card'] {
+  box-shadow: none;
+}
+
+/* ————— block: 2px outlines, hard offset shadows, loud titles ————— */
+
+:root[data-look='block'] {
+  --edge: hsl(var(--outline));
+  --hard: var(--shadow-offset) var(--shadow-offset) 0 hsl(var(--outline));
+  --hard-sm: calc(var(--shadow-offset) * 0.6) calc(var(--shadow-offset) * 0.6) 0 hsl(var(--outline));
+}
+
+:root[data-look='block'] body {
+  background-image: none;
+}
+
+:root[data-look='block']
+  :is(
+    [data-slot='card'],
+    [data-slot='dialog-content'],
+    [data-slot='dropdown-menu-content'],
+    [data-slot='dropdown-menu-sub-content'],
+    [data-slot='select-content']
+  ) {
+  border: 2px solid var(--edge);
+  box-shadow: var(--hard);
+}
+
+:root[data-look='block']
+  :is(
+    [data-slot='input'],
+    [data-slot='textarea'],
+    [data-slot='select-trigger'],
+    [data-slot='checkbox'],
+    [data-slot='switch'],
+    [data-slot='tabs-list']
+  ) {
+  border: 2px solid var(--edge);
+  box-shadow: none;
+}
+
+:root[data-look='block'] [data-slot='button']:not([data-variant='ghost'], [data-variant='link']) {
+  border: 2px solid var(--edge);
+  box-shadow: var(--hard-sm);
+  font-weight: 700;
+}
+
+/* pressed: the button lands on its shadow */
+:root[data-look='block'] [data-slot='button']:not([data-variant='ghost'], [data-variant='link']):active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+:root[data-look='block'] [data-slot='badge'] {
+  border: 2px solid var(--edge);
+  border-radius: var(--radius-sm);
+  font-family: var(--ui-font-mono);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+:root[data-look='block'] [data-slot='badge'][data-variant='secondary'] {
+  background: hsl(var(--accent-fill));
+  color: hsl(var(--accent-fill-foreground));
+}
+
+:root[data-look='block'] :is([data-slot='card-title'], [data-slot='dialog-title']) {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+:root[data-look='block'] [data-slot='tabs-trigger'][data-state='active'] {
+  border-color: transparent;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+:root[data-look='block'] [data-slot='table-header'] [data-slot='table-row'] {
+  border-bottom: 2px solid var(--edge);
+}
+
+/* ————— hud: console panels, corner brackets, glow ————— */
+
+:root[data-look='hud'] {
+  --edge: hsl(var(--primary) / 0.38);
+  --glow: 0 0 34px -18px hsl(var(--primary));
+  --bracket: hsl(var(--primary));
+}
+
+:root[data-look='hud'] body {
+  background-image:
+    linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+  background-repeat: repeat;
+  background-size: 28px 28px;
+}
+
+:root[data-look='hud']
+  :is(
+    [data-slot='card'],
+    [data-slot='dialog-content'],
+    [data-slot='dropdown-menu-content'],
+    [data-slot='dropdown-menu-sub-content'],
+    [data-slot='select-content']
+  ) {
+  border: 1px solid var(--edge);
+  background-color: color-mix(in srgb, hsl(var(--card)) 94%, hsl(var(--primary)));
+  box-shadow: var(--glow);
+  /* corner brackets: two bars per corner, drawn over the panel's color */
+  background-image:
+    linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
+    linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
+    linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
+    linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket));
+  background-origin: border-box;
+  background-position:
+    top left, top left, top right, top right,
+    bottom left, bottom left, bottom right, bottom right;
+  background-repeat: no-repeat;
+  background-size:
+    12px 2px, 2px 12px, 12px 2px, 2px 12px,
+    12px 2px, 2px 12px, 12px 2px, 2px 12px;
+}
+
+:root[data-look='hud']
+  :is([data-slot='input'], [data-slot='textarea'], [data-slot='select-trigger'], [data-slot='tabs-list']) {
+  border-color: var(--edge);
+}
+
+:root[data-look='hud'] [data-slot='button'] {
+  font-family: var(--ui-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+:root[data-look='hud'] [data-slot='button'][data-variant='default'] {
+  border: 1px solid hsl(var(--primary));
+  background: hsl(var(--primary) / 0.14);
+  color: hsl(var(--primary-text));
+  box-shadow: 0 0 18px -6px hsl(var(--primary));
+}
+
+:root[data-look='hud'] [data-slot='button'][data-variant='default']:hover {
+  background: hsl(var(--primary) / 0.22);
+}
+
+:root[data-look='hud'] [data-slot='button']:is([data-variant='outline'], [data-variant='secondary']) {
+  border: 1px solid var(--edge);
+  background: transparent;
+}
+
+:root[data-look='hud'] [data-slot='badge'] {
+  border-radius: 0;
+  font-family: var(--ui-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+:root[data-look='hud'] [data-slot='badge'][data-variant='default'] {
+  border-color: hsl(var(--primary) / 0.45);
+  background: hsl(var(--primary) / 0.12);
+  color: hsl(var(--primary-text));
+}
+
+:root[data-look='hud'] [data-slot='badge'][data-variant='secondary'] {
+  border-color: hsl(var(--highlight) / 0.45);
+  background: hsl(var(--highlight) / 0.1);
+  color: hsl(var(--highlight));
+}
+
+:root[data-look='hud'] [data-slot='badge'][data-variant='destructive'] {
+  border-color: hsl(var(--destructive) / 0.5);
+  background: hsl(var(--destructive) / 0.12);
+  color: hsl(var(--destructive));
+}
+
+:root[data-look='hud'] :is([data-slot='card-title'], [data-slot='dialog-title']) {
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+:root[data-look='hud'] [data-slot='card-title']::before {
+  content: '▸ ';
+  color: hsl(var(--primary));
+}
+
+:root[data-look='hud'] [data-slot='tabs-trigger'][data-state='active'] {
+  border-color: hsl(var(--primary) / 0.45);
+  background: hsl(var(--primary) / 0.14);
+  color: hsl(var(--primary-text));
+}
+
+:root[data-look='hud'] [data-slot='table-row'] {
+  border-color: hsl(var(--primary) / 0.16);
+}

@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useEventListener } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
-import { THEME_TOKENS } from '../theme/presets'
+import { THEME_CHANGE } from '../theme/lab'
+import { THEME_TOKENS } from '../theme/tokens'
 import { useTheme } from '../theme/useTheme'
 
-const { theme, mode } = useTheme()
+const { mode } = useTheme()
 const values = ref<Record<string, string>>({})
 
 function readTokens() {
@@ -16,9 +18,10 @@ function readTokens() {
 }
 
 // swatch colors are live CSS; the text readouts need a re-read after the
-// data-theme / .dark mutation lands
+// .dark toggle or a theme-lab change lands
 onMounted(readTokens)
-watch([theme, mode], () => requestAnimationFrame(readTokens))
+watch(mode, () => requestAnimationFrame(readTokens))
+useEventListener(window, THEME_CHANGE, () => requestAnimationFrame(readTokens))
 
 const hasForeground = (token: string) =>
   (THEME_TOKENS as readonly string[]).includes(`${token}-foreground`)

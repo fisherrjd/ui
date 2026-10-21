@@ -1,4 +1,15 @@
-export { type Mode, PRESETS, THEME_TOKENS, type ThemeId } from './presets'
-export { default as ThemePicker } from './ThemePicker.vue'
+export {
+  type Fonts,
+  FONTS,
+  type Mode,
+  PALETTES,
+  type PaletteName,
+  type Seeds,
+  type Style,
+  STYLES,
+  type Theme,
+  type ThemeOptions,
+} from './derive'
+export { THEME_TOKENS, type ThemeToken } from './tokens'
 export { default as ThemeToggle } from './ThemeToggle.vue'
-export { LOCKED, THEMES, useTheme } from './useTheme'
+export { LOCKED, THEME, useTheme } from './useTheme'

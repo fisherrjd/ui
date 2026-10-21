@@ -1,0 +1,32 @@
+// every color token the theme generates, in display order (styleguide swatches)
+export const THEME_TOKENS = [
+  'background',
+  'foreground',
+  'sidebar',
+  'card',
+  'popover',
+  'muted',
+  'muted-foreground',
+  'secondary',
+  'border',
+  'input',
+  'outline',
+  'primary',
+  'primary-foreground',
+  'primary-text',
+  'accent',
+  'accent-foreground',
+  'highlight',
+  'accent-fill',
+  'destructive',
+  'destructive-foreground',
+  'success',
+  'warning',
+  'ring',
+  'chart-1',
+  'chart-2',
+  'chart-3',
+  'chart-4',
+] as const
+
+export type ThemeToken = (typeof THEME_TOKENS)[number]
