@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "Shared theme presets, base styles, shadcn-vue primitives and theme runtime for jade's Vue apps",
   "type": "module",
+  "files": [
+    "src",
+    "styles",
+    "vite.js",
+    "vite.d.ts"
+  ],
   "exports": {
     "./styles.css": "./styles/index.css",
     "./theme": "./src/theme/index.ts",
