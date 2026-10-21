@@ -27,10 +27,10 @@ const { mode } = useTheme()
 const route = useRoute()
 
 // manual active check: `/` must not light up for every route
+const under = (path: string, prefix: string) =>
+  prefix === '/' ? path === '/' : path === prefix || path.startsWith(`${prefix}/`)
 function isActive(link: NavLink) {
-  return link.to === '/'
-    ? route.path === '/'
-    : route.path === link.to || route.path.startsWith(`${link.to}/`)
+  return [link.to, ...(link.match ?? [])].some((prefix) => under(route.path, prefix))
 }
 const current = computed(
   () => props.nav.flatMap((section) => section.links).find(isActive)?.label ?? '',

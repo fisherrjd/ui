@@ -8,6 +8,9 @@ export interface NavLink {
   badge?: string | number
   /** tooltip */
   title?: string
+  /** more path prefixes that count as this link, e.g. ['/checklist'] for a
+   *  page reached from it */
+  match?: string[]
 }
 
 export interface NavSection {
