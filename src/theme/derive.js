@@ -245,6 +245,11 @@ export function derive(colors, mode) {
     ring: t['primary-text'],
     'chart-1': t.primary,
     'chart-2': t['accent-fill'],
+    // text that reads on each chart color, for filled swatches (swatch())
+    'chart-1-foreground': on(t.primary),
+    'chart-2-foreground': on(t['accent-fill']),
+    'chart-3-foreground': on(t['chart-3']),
+    'chart-4-foreground': on(t['chart-4']),
   }
 }
 

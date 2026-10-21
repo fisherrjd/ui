@@ -27,6 +27,10 @@ export const THEME_TOKENS = [
   'chart-2',
   'chart-3',
   'chart-4',
+  'chart-1-foreground',
+  'chart-2-foreground',
+  'chart-3-foreground',
+  'chart-4-foreground',
 ] as const
 
 export type ThemeToken = (typeof THEME_TOKENS)[number]

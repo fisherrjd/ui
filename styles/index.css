@@ -27,6 +27,13 @@
   --color-chart-2: hsl(var(--chart-2));
   --color-chart-3: hsl(var(--chart-3));
   --color-chart-4: hsl(var(--chart-4));
+  --color-chart-1-foreground: hsl(var(--chart-1-foreground));
+  --color-chart-2-foreground: hsl(var(--chart-2-foreground));
+  --color-chart-3-foreground: hsl(var(--chart-3-foreground));
+  --color-chart-4-foreground: hsl(var(--chart-4-foreground));
+  /* the current swatch (style="swatch(i)"): bg-swatch / text-swatch-foreground */
+  --color-swatch: hsl(var(--swatch));
+  --color-swatch-foreground: hsl(var(--swatch-foreground));
   --font-sans: var(--ui-font-body);
   --font-mono: var(--ui-font-mono);
   --font-heading: var(--ui-font-heading);
