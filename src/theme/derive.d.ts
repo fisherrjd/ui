@@ -40,7 +40,7 @@ export interface ThemeOptions {
   colors?: Partial<Seeds>
   /** Google Fonts family names, or 'system' */
   fonts?: Partial<Fonts>
-  /** line: hairlines, flat · block: 2px outlines + hard shadows · hud: console panels + glow */
+  /** line: hairlines, flat · block: 2px outlines + hard shadows · hud: console panels + corner brackets */
   style?: Style
   /** corner radius in px (default 6) */
   radius?: number

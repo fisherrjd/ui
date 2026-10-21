@@ -91,11 +91,10 @@
   border-bottom: 2px solid var(--edge);
 }
 
-/* ————— hud: console panels, corner brackets, glow ————— */
+/* ————— hud: console panels, corner brackets, grid backdrop ————— */
 
 :root[data-look='hud'] {
   --edge: hsl(var(--primary) / 0.38);
-  --glow: 0 0 34px -18px hsl(var(--primary));
   --bracket: hsl(var(--primary));
 }
 
@@ -117,7 +116,7 @@
   ) {
   border: 1px solid var(--edge);
   background-color: color-mix(in srgb, hsl(var(--card)) 94%, hsl(var(--primary)));
-  box-shadow: var(--glow);
+  box-shadow: none;
   /* corner brackets: two bars per corner, drawn over the panel's color */
   background-image:
     linear-gradient(var(--bracket), var(--bracket)), linear-gradient(var(--bracket), var(--bracket)),
@@ -150,7 +149,7 @@
   border: 1px solid hsl(var(--primary));
   background: hsl(var(--primary) / 0.14);
   color: hsl(var(--primary-text));
-  box-shadow: 0 0 18px -6px hsl(var(--primary));
+  box-shadow: none;
 }
 
 :root[data-look='hud'] [data-slot='button'][data-variant='default']:hover {

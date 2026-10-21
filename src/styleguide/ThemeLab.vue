@@ -59,7 +59,7 @@ const fontsFor = (role: keyof Fonts) => [
 const styleHints = {
   line: 'hairlines, flat',
   block: '2px outlines, hard shadows',
-  hud: 'console panels, glow',
+  hud: 'console panels, brackets',
 } as const
 
 const snippet = computed(() => themeSnippet(draft.value, mode.value))

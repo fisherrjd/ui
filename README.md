@@ -44,7 +44,7 @@ line style, 6px corners, dark.
 - **3 styles:**
   - `line`: hairlines and flat panels.
   - `block`: 2px outlines, hard offset shadows (`shadow` px), loud titles.
-  - `hud`: console panels with corner brackets, glow and a grid backdrop.
+  - `hud`: console panels with corner brackets and a grid backdrop.
 
 **Finding a look:** run an app's `dev` and open `/styleguide`. It's dev-only
 by convention, so builds never ship it. Its **theme lab**
