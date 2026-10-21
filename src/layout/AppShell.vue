@@ -41,6 +41,10 @@ const navOpen = ref(false)
 watch(() => route.path, () => (navOpen.value = false))
 
 const WIDTH = { narrow: 'max-w-3xl', default: 'max-w-6xl', wide: 'max-w-screen-2xl' }
+
+// the theme readout (palette · style · mode) is a dev aid, like the
+// styleguide: shipped builds don't show it
+const isDev = import.meta.env.DEV
 </script>
 
 <template>
@@ -80,7 +84,10 @@ const WIDTH = { narrow: 'max-w-3xl', default: 'max-w-6xl', wide: 'max-w-screen-2
         </div>
       </nav>
 
-      <div class="space-y-1 border-t px-4 py-3 font-mono text-[11px] text-muted-foreground">
+      <div
+        v-if="isDev || $slots['sidebar-footer']"
+        class="space-y-1 border-t px-4 py-3 font-mono text-[11px] text-muted-foreground"
+      >
         <slot name="sidebar-footer">
           <p class="flex items-center gap-2">
             <span class="size-1.5 rounded-full bg-primary" aria-hidden="true" />
