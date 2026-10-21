@@ -30,6 +30,7 @@ export const FONTS = {
   Fredoka: { kind: 'sans', axes: 'wght@400;500;600' },
   Cinzel: { kind: 'serif', axes: 'wght@500;700' },
   Newsreader: { kind: 'serif', axes: 'opsz,wght@6..72,400;6..72,600;6..72,700' },
+  'Cascadia Code': { kind: 'mono', axes: 'wght@400;500;600;700' },
   'JetBrains Mono': { kind: 'mono', axes: 'wght@400;500;700' },
   'IBM Plex Mono': { kind: 'mono', axes: 'wght@400;500;700' },
   'Geist Mono': { kind: 'mono', axes: 'wght@400;500;700' },

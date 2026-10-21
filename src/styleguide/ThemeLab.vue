@@ -47,10 +47,12 @@ const fontRoles: { key: keyof Fonts; label: string }[] = [
   { key: 'body', label: 'Body' },
   { key: 'mono', label: 'Numbers & labels' },
 ]
+// headings can be anything (mono headings suit the terminal look); body
+// text stays proportional for reading; the mono slot stays mono
 const fontsFor = (role: keyof Fonts) => [
   'system',
   ...Object.keys(FONTS).filter((name) =>
-    role === 'mono' ? FONTS[name]!.kind === 'mono' : FONTS[name]!.kind !== 'mono',
+    role === 'heading' ? true : role === 'mono' ? FONTS[name]!.kind === 'mono' : FONTS[name]!.kind !== 'mono',
   ),
 ]
 
